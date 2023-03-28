@@ -10,6 +10,15 @@ module.exports = app => {
     // get empdetails
     router.get("/", employeeDetails.findAll);
 
+    // update emp info by Id
+    router.put("/:id", employeeDetails.update);
+
+    // select employee by Id
+    router.get("/:id", employeeDetails.empById);
+    
+    //delete emp by Id
+    router.delete("/:id", employeeDetails.delete);
+
     app.use('/api/empdetails', router);
 
   };

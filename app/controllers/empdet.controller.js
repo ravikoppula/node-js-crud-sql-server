@@ -57,3 +57,74 @@ exports.findAll = (req, res) => {
 
 };
 
+// update
+
+// Update a Employee by the id in the request
+exports.update = (req, res) => {
+    const id = req.params.id;
+  
+    EmployeeDetails.update(req.body, {
+      where: { id: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Employee det was updated successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot update Employee det with id=${id}. Maybe emp Id was not found or req.body is empty!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Employee det with id=" + id
+        });
+      });
+  };
+
+// empById
+exports.empById = (req, res) => {
+  
+    const id = req.params.id;
+   
+    EmployeeDetails.findByPk(id)
+       .then(data => {
+         res.send(data);
+       })
+       .catch(err => {
+         res.status(500).send({
+           message: "Error retrieving Employee det with id=" + id
+         });
+       });
+   
+   };
+// delete emp details by Id
+exports.delete = (req, res) => {
+  
+    const id = req.params.id;
+
+    EmployeeDetails.destroy({
+      where: { id: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Employee det was deleted successfully!"
+          });
+        } else {
+          res.send({
+            message: `Cannot delete Employee det with id=${id}. Maybe Employee det was not found!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Could not delete Employee det with id=" + id
+        });
+      });
+
+};
+
+

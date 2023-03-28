@@ -13,7 +13,7 @@ module.exports = app => {
     // Retrieve all published employees
     router.get("/published", employees.findAllPublished);
   
-    // Retrieve a single Tutorial with id
+    // Retrieve a single emp with id
     router.get("/:id", employees.findOne);
   
     // Update a Tutorial with id
