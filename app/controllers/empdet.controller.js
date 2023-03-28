@@ -38,7 +38,22 @@ exports.create =(req,res)=>{
         message:
             err.message || "Some error occurred while creating the Employee Details."
         });
+    }); 
+};
+
+// get all employess
+exports.findAll = (req, res) => {
+
+    EmployeeDetails.findAll({ where: { Sex: 1 } })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+        message:
+            err.message || "Some error occurred while retrieving employees deatils."
+        });
     });
 
-
 };
+

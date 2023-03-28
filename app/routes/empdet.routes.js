@@ -7,6 +7,9 @@ module.exports = app => {
     // Create a new emp information
     router.post("/", employeeDetails.create);
   
+    // get empdetails
+    router.get("/", employeeDetails.findAll);
+
     app.use('/api/empdetails', router);
 
   };
